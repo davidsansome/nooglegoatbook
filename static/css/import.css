@@ -1,0 +1,22 @@
+#content_container {
+  max-width: 800px;
+  margin: 1em;
+}
+
+#content_container h2 {
+  color: #2858b0;
+}
+
+#content_container a {
+  color: #2858b0;
+}
+
+.example {
+  font-size: smaller;
+  color: gray;
+}
+
+#error {
+  font-weight: bold;
+  color: red;
+}

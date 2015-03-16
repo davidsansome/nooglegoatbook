@@ -1,0 +1,55 @@
+body {
+  font-family: sans-serif;
+  margin: 0px;
+}
+
+#container {
+  position: absolute;
+  top: 5em;
+  left: 0px;
+  right: 0px;
+}
+
+#logo {
+  background-color: #004079;
+  background-image: url('/images/biglogo.png');
+  width: 800px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+
+h1 {
+  margin: 0px;
+  padding: 2em 0em 0em 2.5em;
+  font-size: 20pt;
+  font-family: Verdana, sans-serif;
+}
+
+#content {
+  width: 300px;
+  margin-left: 440px;
+  margin-top: 40px;
+  font-size: small;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#signin {
+  margin-top: 2em;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+}
+
+#poweredby {
+  text-align: center;
+  margin-top: 2em;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Noogle Goatbook",
+  "version": "0.1",
+  "icons": { "24": "icon24.png", "128": "icon128.png" },
+  "web_content": {
+    "enabled": true,
+    "origin": "http://www.nooglegoatbook.com",
+    "paths": [
+      "/view"
+    ]
+  },
+  "launch": {
+    "web_url": "/view"
+  }
+}

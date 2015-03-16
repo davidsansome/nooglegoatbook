@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Noogle Goatbook</title>
+  <link href="/css/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/view.css" rel="stylesheet" type="text/css" />
+  <script src="http://www.google.com/jsapi"></script>
+  <script>
+    google.load('prototype', '1.6.0.3');
+    google.load('scriptaculous', '1.8.2');
+  </script>
+  <script src="/js/common.js"></script>
+  <script src="/js/tiny_mce/tiny_mce.js"></script>
+  <script src="/js/dialog.js"></script>
+  <script src="/js/view.js"></script>
+  <script src="/js/aes.js"></script>
+  <script src="/js/sha512-min.js"></script>
+</head>
+<body>
+
+<div id="whitescreen" style="display: none"></div>
+<div id="dialog_container"></div>
+
+{% include "header.html" %}
+
+<div id="notebooks"></div>
+
+<div id="notebook">
+  <div class="header_bar" id="notebook_header">
+    <div class="button disabled" id="notebook_save_done">Saved</div>
+    <div class="button disabled" id="notebook_save_inprogress" style="display:none">Saving...</div>
+    <div class="button" id="notebook_save_now" style="display:none">Save now</div>
+    <div class="button" id="notebook_delete">Delete</div>
+    <div class="button" id="notebook_rename">Rename</div>
+
+    <img class="lock" id="notebook_unencrypted" title="The contents of this notebook is stored on the server in plain text" src="/images/unencrypted.png" />
+    <img style="display:none" class="lock" id="notebook_encrypted" title="The contents of this notebook is encrypted with AES-256 before it leaves your computer" src="/images/encrypted.png" />
+
+    <h2 id="notebook_name">Loading notebook...</h2>
+  </div>
+  <div id="notebook_editor_container" style="display: none"> 
+    <textarea id="notebook_editor">
+    </textarea>
+  </div>
+</div>
+
+</body>
+</html>

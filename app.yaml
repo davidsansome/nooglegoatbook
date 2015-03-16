@@ -1,0 +1,45 @@
+application: nooglegoatbook
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+
+- url: /css
+  static_dir: static/css
+
+- url: /js
+  static_dir: static/js
+
+- url: /images
+  static_dir: static/images
+
+- url: /app.crx
+  static_files: static/app/app.crx
+  upload: static/app/app.crx
+
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+
+- url: /
+  script: index.py
+
+- url: /view.*
+  login: required
+  script: view.py
+
+- url: /import/googlenotebook.*
+  login: required
+  script: googlenotebook.py
+
+- url: /import
+  login: required
+  script: import.py
+
+- url: /api/notebook.*
+  login: required
+  script: notebook.py
