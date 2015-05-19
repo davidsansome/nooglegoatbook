@@ -1,0 +1,6 @@
+indexes:
+
+- kind: Notebook
+  properties:
+  - name: owner
+  - name: title
