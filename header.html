@@ -1,8 +1,7 @@
 <div id="page_header">
   <div id="logo"></div>
   <div id="account">
-    <b>{{ user.email|escape }}</b> |
-    <a href="/import">Import &amp; Export</a> |
+    <b>{{ user.email()|escape }}</b> |
     <a href="{{ logout_url }}">Sign out</a>
   </div>
   <h1>Noogle Goatbook</h1>

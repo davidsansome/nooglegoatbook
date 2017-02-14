@@ -1,30 +1,24 @@
-#!/usr/bin/env python
-
 import os
-import wsgiref.handlers
 
+import jinja2
+import webapp2
 from google.appengine.api import users
 from google.appengine.ext import db
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 
 from models import *
 
-class MainPage(webapp.RequestHandler):
-    def get(self):
-        template_values = {
-            'user': users.get_current_user(),
-        }
+ENV = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
-        path = os.path.join(os.path.dirname(__file__), 'index.html')
-        self.response.out.write(template.render(path, template_values))
+class MainPage(webapp2.RequestHandler):
+  def get(self):
+    self.response.out.write(ENV.get_template('index.html').render({
+      'user': users.get_current_user(),
+    }))
 
-application = webapp.WSGIApplication([
+app = webapp2.WSGIApplication([
     ('/', MainPage),
 ], debug=True)
 
-def main():
-    wsgiref.handlers.CGIHandler().run(application)
-
-if __name__ == '__main__':
-    main()

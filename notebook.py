@@ -1,18 +1,14 @@
-#!/usr/bin/env python
-
 import os
-import wsgiref.handlers
 import time
 
+import webapp2
 from google.appengine.api import users
 from google.appengine.ext import db
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 
 from common import to_json
 from models import *
 
-class ListNotebooks(webapp.RequestHandler):
+class ListNotebooks(webapp2.RequestHandler):
   def get(self):
     # Get the user's last opened notebook
     last_opened_notebook = get_user_data().last_opened_notebook
@@ -50,7 +46,7 @@ class ListNotebooks(webapp.RequestHandler):
       'encrypted': notebook.encrypted,
     }
 
-class NewNotebook(webapp.RequestHandler):
+class NewNotebook(webapp2.RequestHandler):
   def post(self):
     title = self.request.get('title')
 
@@ -78,7 +74,7 @@ class NewNotebook(webapp.RequestHandler):
     user_data.last_opened_notebook = notebook.key().id()
     user_data.put()
 
-class GetNotebook(webapp.RequestHandler):
+class GetNotebook(webapp2.RequestHandler):
   def get(self):
     id = int(self.request.get('id'))
     notebook = get_notebook(id)
@@ -101,7 +97,7 @@ class GetNotebook(webapp.RequestHandler):
     notebook.encrypted = bool(int(self.request.get('encrypted')))
     notebook.put()
 
-class RenameNotebook(webapp.RequestHandler):
+class RenameNotebook(webapp2.RequestHandler):
   def post(self):
     id = int(self.request.get('id'))
     notebook = get_notebook(id)
@@ -109,7 +105,7 @@ class RenameNotebook(webapp.RequestHandler):
     notebook.title = self.request.get('title')
     notebook.put()
 
-class DeleteNotebook(webapp.RequestHandler):
+class DeleteNotebook(webapp2.RequestHandler):
   def post(self):
     id = int(self.request.get('id'))
     get_notebook(id).delete()
@@ -134,16 +130,10 @@ def get_user_data():
 
   return user_data
 
-application = webapp.WSGIApplication([
+app = webapp2.WSGIApplication([
   ('/api/notebook', ListNotebooks),
   ('/api/notebook/new', NewNotebook),
   ('/api/notebook/delete', DeleteNotebook),
   ('/api/notebook/title', RenameNotebook),
   ('/api/notebook/content', GetNotebook),
 ], debug=True)
-
-def main():
-  wsgiref.handlers.CGIHandler().run(application)
-
-if __name__ == '__main__':
-  main()

@@ -1,8 +1,14 @@
 application: nooglegoatbook-hrd
 version: 1
-runtime: python
+runtime: python27
 api_version: 1
-threadsafe: no
+threadsafe: yes
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
 
 handlers:
 - url: /favicon.ico
@@ -27,20 +33,12 @@ handlers:
   upload: static/images/favicon.ico
 
 - url: /
-  script: index.py
+  script: index.app
 
 - url: /view.*
   login: required
-  script: view.py
-
-- url: /import/googlenotebook.*
-  login: required
-  script: googlenotebook.py
-
-- url: /import
-  login: required
-  script: import.py
+  script: view.app
 
 - url: /api/notebook.*
   login: required
-  script: notebook.py
+  script: notebook.app
